@@ -4,6 +4,7 @@ import random
 import telegram
 from dotenv import load_dotenv
 
+
 FIRST_COMIC = 1
 LAST_COMIC = 2910
 
@@ -46,8 +47,8 @@ def publish_comic(metadata, tg_token, tg_chat_id):
 
 if __name__ == "__main__":
     load_dotenv()
-    tg_token = os.getenv("TELEGRAM_TOKEN")
-    tg_chat_id = os.getenv("TG_CHAT_ID")
+    tg_token = os.environ["TELEGRAM_TOKEN"]
+    tg_chat_id = os.environ["TG_CHAT_ID"]
 
     comic_number = random.randrange(FIRST_COMIC, LAST_COMIC)
     comic_url = f"https://xkcd.com/{comic_number}/info.0.json"
