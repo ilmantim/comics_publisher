@@ -2,12 +2,12 @@ import os
 import requests
 import random
 import telegram
-import time
 from dotenv import load_dotenv
 
 
 FIRST_COMIC = 1
 LAST_COMIC = 2910
+filepath = None
 
 
 def download_image(image_url):
@@ -59,3 +59,8 @@ if __name__ == "__main__":
 
     fetch_and_publish_comic(comic_url, tg_token, tg_chat_id)
 
+    try:
+        fetch_and_publish_comic(comic_url, tg_token, tg_chat_id)
+    finally:
+        if filepath is not None:
+            os.remove(filepath)
