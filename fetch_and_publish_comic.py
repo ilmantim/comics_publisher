@@ -4,7 +4,6 @@ import random
 import telegram
 import time
 from dotenv import load_dotenv
-import schedule
 
 
 FIRST_COMIC = 1
@@ -48,9 +47,6 @@ def fetch_and_publish_comic(comic_url, tg_token, tg_chat_id):
 
     publish_image(tg_token, tg_chat_id, filepath, alt_text)
 
-    # Schedule the task to run again after 24 hours
-    schedule.every(publish_interval).hours.do(fetch_and_publish_comic, comic_url, tg_token, tg_chat_id)
-
 
 if __name__ == "__main__":
     load_dotenv()
@@ -63,7 +59,3 @@ if __name__ == "__main__":
 
     fetch_and_publish_comic(comic_url, tg_token, tg_chat_id)
 
-    # Run the scheduler
-    while True:
-        schedule.run_pending()
-        time.sleep(1)
